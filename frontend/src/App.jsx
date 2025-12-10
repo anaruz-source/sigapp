@@ -53,9 +53,16 @@ function App() {
                 setLoading(true);
 
                 // Récupérer les données GeoJSON depuis le dossier public
-                const response = await fetch('/data/communes.geojson');
+                // Utilisation de import.meta.env.BASE_URL pour gérer le préfixe de l'URL (ex: /sigapp/)
+                const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+                    ? import.meta.env.BASE_URL
+                    : import.meta.env.BASE_URL + '/';
+                const geoJsonUrl = `${baseUrl}data/communes.geojson`;
+
+                console.log('Chargement GeoJSON depuis:', geoJsonUrl);
+                const response = await fetch(geoJsonUrl);
                 if (!response.ok) {
-                    throw new Error('Impossible de charger les données GeoJSON');
+                    throw new Error(`Impossible de charger les données GeoJSON (${response.status})`);
                 }
                 const data = await response.json();
                 setGeojsonData(data);
@@ -158,7 +165,7 @@ function App() {
                 <div className="footer-content">
                     <p>
                         Données : Communes territoriales du Maroc |
-                        Créé avec React, Leaflet & Flask
+                        Créé avec React & Leaflet
                     </p>
                     <h3>📚 Références et Sources de Données</h3>
                     <div className="references">
