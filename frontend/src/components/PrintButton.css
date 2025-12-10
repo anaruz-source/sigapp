@@ -1,0 +1,89 @@
+.print-button-container {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1000;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+
+.print-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.print-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.print-button:active {
+    transform: translateY(0px);
+}
+
+.print-button.download-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+}
+
+.print-button.download-btn:hover {
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+}
+
+.print-icon {
+    font-size: 18px;
+}
+
+/* Style pour l'impression */
+@media print {
+
+    .print-button-container,
+    .app-footer,
+    .map-legend {
+        display: none !important;
+    }
+
+    .app-main {
+        padding: 0 !important;
+    }
+
+    .leaflet-map {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .leaflet-control-zoom {
+        display: none !important;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .print-button-container {
+        bottom: 20px;
+        left: 20px;
+        flex-direction: row;
+    }
+
+    .print-button {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .print-icon {
+        font-size: 16px;
+    }
+}
